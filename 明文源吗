@@ -1,7 +1,7 @@
 // CFnew - 终端 v2.9.8b
 // 版本: v2.9.8b 
 import { connect as 连接 } from 'cloudflare:sockets';
-let 认证令牌 = '351c9981-04b6-4103-aa4b-864aa9c91469';
+let certify_token = '351c9981-04b6-4103-aa4b-864aa9c91469';
 let 回退地址 = '';
 let 代理5配置 = '';
 let 自定义优选地址列表 = [];
@@ -621,8 +621,8 @@ export default {
         }
       }
       await 处理值键值值(本地值734);
-      认证令牌 = (本地值734.u || 本地值734.U || 认证令牌).toLowerCase();
-      const 值路径 = (本地值734.d || 本地值734.D || 认证令牌).toLowerCase();
+      certify_token = (本地值734.u || 本地值734.U || certify_token).toLowerCase();
+      const 值路径 = (本地值734.d || 本地值734.D || certify_token).toLowerCase();
       const 本地值726 = 获取配置值('p', 本地值734.p || 本地值734.P);
       let 值自定义地址 = false;
       const 手动地区725 = 获取配置值('wk', 本地值734.wk || 本地值734.WK);
@@ -740,7 +740,7 @@ export default {
             const 清理自定义路径691 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
             是否有效692 = 路径值693 === 清理自定义路径691;
           } else {
-            是否有效692 = 是否有效格式(路径值693) && 路径值693 === 认证令牌;
+            是否有效692 = 是否有效格式(路径值693) && 路径值693 === certify_token;
           }
           if (是否有效692) {
             return await 处理配置接口(请求735, 本地值734);
@@ -775,7 +775,7 @@ export default {
             const 清理自定义路径685 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
             是否有效686 = 路径值687 === 清理自定义路径685;
           } else {
-            是否有效686 = 是否有效格式(路径值687) && 路径值687 === 认证令牌;
+            是否有效686 = 是否有效格式(路径值687) && 路径值687 === certify_token;
           }
           if (是否有效686) {
             return await 处理优选地址列表接口(请求735);
@@ -833,7 +833,7 @@ export default {
               是否有效680 = 路径值681 === 清理自定义路径679;
             } else {
               // 使用UUID路径
-              是否有效680 = 是否有效格式(路径值681) && 路径值681 === 认证令牌;
+              是否有效680 = 是否有效格式(路径值681) && 路径值681 === certify_token;
             }
             if (是否有效680) {
               const 本地值678 = 获取配置值('p', 本地值734.p || 本地值734.P);
@@ -898,7 +898,7 @@ export default {
               是否有效 = 路径值 === 清理自定义路径674;
             } else {
               // 使用UUID路径
-              是否有效 = 是否有效格式(路径值) && 路径值 === 认证令牌;
+              是否有效 = 是否有效格式(路径值) && 路径值 === certify_token;
             }
             if (是否有效) {
               try {
@@ -1588,10 +1588,10 @@ document.addEventListener('DOMContentLoaded', function () {
           const 规范化自定义路径 = 清理自定义路径.endsWith('/') && 清理自定义路径.length > 1 ? 清理自定义路径.slice(0, -1) : 清理自定义路径;
           const 规范化路径 = 网址698.pathname.endsWith('/') && 网址698.pathname.length > 1 ? 网址698.pathname.slice(0, -1) : 网址698.pathname;
           if (规范化路径 === 规范化自定义路径) {
-            return await 处理订阅值(请求735, 认证令牌);
+            return await 处理订阅值(请求735, certify_token);
           }
           if (规范化路径 === 规范化自定义路径 + '/sub') {
-            return await 处理订阅请求(请求735, 认证令牌, 网址698);
+            return await 处理订阅请求(请求735, certify_token, 网址698);
           }
           if (网址698.pathname.length > 1 && 网址698.pathname !== '/') {
             const 用户658 = 网址698.pathname.replace(/\/$/, '').replace('/sub', '').substring(1);
@@ -1611,7 +1611,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (网址698.pathname.length > 1 && 网址698.pathname !== '/' && !网址698.pathname.includes('/sub')) {
             const 用户657 = 网址698.pathname.replace(/\/$/, '').substring(1);
             if (是否有效格式(用户657)) {
-              if (用户657 === 认证令牌) {
+              if (用户657 === certify_token) {
                 return await 处理订阅值(请求735, 用户657);
               } else {
                 return new Response(JSON.stringify({
@@ -1630,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (路径部分列表.length === 2 && 路径部分列表[1] === 'sub') {
               const 用户656 = 路径部分列表[0].substring(1);
               if (是否有效格式(用户656)) {
-                if (用户656 === 认证令牌) {
+                if (用户656 === certify_token) {
                   return await 处理订阅请求(请求735, 用户656, 网址698);
                 } else {
                   return new Response(JSON.stringify({
@@ -1647,7 +1647,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         }
         if (网址698.pathname.toLowerCase().includes(`/${值路径}`)) {
-          return await 处理订阅请求(请求735, 认证令牌);
+          return await 处理订阅请求(请求735, certify_token);
         }
       }
       return new Response(JSON.stringify({
@@ -3173,7 +3173,7 @@ async function 处理网页套接字请求(请求417) {
       }
       if (!协议类型) {
         if (启用明文 && 数据396.byteLength >= 24) {
-          const 轻量协议结果 = 解析网页套接字值头部(数据396, 认证令牌);
+          const 轻量协议结果 = 解析网页套接字值头部(数据396, certify_token);
           if (!轻量协议结果.hasError) {
             协议类型 = 'vless';
             const {
@@ -3195,7 +3195,7 @@ async function 处理网页套接字请求(请求417) {
           }
         }
         if (启用木马 && 数据396.byteLength >= 56) {
-          const 值结果 = await 解析木马头部(数据396, 认证令牌);
+          const 值结果 = await 解析木马头部(数据396, certify_token);
           if (!值结果.hasError) {
             协议类型 = atob('dHJvamFu');
             const {
@@ -3799,7 +3799,7 @@ function 解析代理配置(地址249) {
   };
 }
 async function 处理订阅值(请求241, 用户240 = null) {
-  if (!用户240) 用户240 = 认证令牌;
+  if (!用户240) 用户240 = certify_token;
   const 网址239 = new URL(请求241.url);
   // 优先检查Cookie中的语言设置
   const 凭据头部 = 请求241.headers.get('Cookie') || '';
@@ -8070,7 +8070,7 @@ async function 处理扩展超文本客户端(主体128, 唯一标识) {
 }
 async function 处理扩展超文本值(请求119) {
   try {
-    return await 处理扩展超文本客户端(请求119.body, 认证令牌);
+    return await 处理扩展超文本客户端(请求119.body, certify_token);
   } catch (错误118) {
     return null;
   }
